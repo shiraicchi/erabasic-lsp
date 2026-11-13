@@ -249,6 +249,22 @@ MIT License - see [LICENSE](extension/LICENSE.txt)
 
 ---
 
+## Source References
+
+This LSP was built by adapting and extending code from the following projects:
+
+> Emuera-Anchor and emuEra are the same thing.
+
+| Project | Purpose |
+|---------|---------|
+| **emuera-tty** | Core parser (expr.rs, parser.rs, ast.rs, loader.rs, lint.rs, builtins.rs) — battle-tested Rust port of Emuera |
+| **emuera.em** | Original Emuera-EM (C#) — reference for dialect behavior, built-in functions, control flow |
+| **Emuera-Anchor** | Anchor variant (C#) — reference for `#FUNCTIONS`, `PARAM`, `TR_` functions, `#SINGLE`/`#ONLY`/`#KOJO` |
+| **emuEra** | Another C# implementation — reference for EE dialect (`VARI`/`VARS`), edge cases |
+| **EM-Reference** | Markdown documentation for 200+ built-in functions/commands as found in AnonTW — parsed for hover docs |
+
+---
+
 ## Acknowledgments
 
 - **emuera-tty** - The Rust parser this LSP is built on
