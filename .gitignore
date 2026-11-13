@@ -1,0 +1,44 @@
+# Rust
+target/
+**/*.rs.bk
+Cargo.lock
+
+# JavaScript/TypeScript
+node_modules/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+out/
+*.vsix
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local paths (user-specific)
+/home/
+/Users/
+
+# Secrets
+*.key
+*.pem
+.env
+.env.local
+.env.*.local
+
+# Test coverage
+coverage/
+*.lcov

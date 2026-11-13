@@ -1,0 +1,43 @@
+{
+  "comments": {
+    "lineComment": ";",
+    "blockComment": ["/*", "*/"]
+  },
+  "brackets": [
+    ["(", ")"],
+    ["[", "]"],
+    ["{", "}"]
+  ],
+  "autoClosingPairs": [
+    ["(", ")"],
+    ["[", "]"],
+    ["{", "}"],
+    ["\"", "\""],
+    ["'", "'"],
+    ["@", "@"]
+  ],
+  "surroundingPairs": [
+    ["(", ")"],
+    ["[", "]"],
+    ["{", "}"],
+    ["\"", "\""],
+    ["'", "'"]
+  ],
+  "folding": {
+    "markers": {
+      "start": "^\\s*#region\\b",
+      "end": "^\\s*#endregion\\b"
+    }
+  },
+  "indentationRules": {
+    "increaseIndentPattern": "^\\s*(IF|FOR|WHILE|REPEAT|SELECTCASE|FUNCTION|#FUNCTION|#SINGLE)\\b.*(?:ENDIF|NEXT|WEND|REND|ENDSELECT|ENDFUNC|END)?$",
+    "decreaseIndentPattern": "^\\s*(ENDIF|ELSEIF|ELSE|NEXT|WEND|REND|ENDSELECT|CASE|CASEELSE|ENDFUNC|END)\\b"
+  },
+  "onEnterRules": [
+    {
+      "beforeText": "^\\s*(IF|FOR|WHILE|REPEAT|SELECTCASE|FUNCTION|#FUNCTION|#SINGLE)\\b.*[^;]$",
+      "afterText": "^\\s*(ENDIF|NEXT|WEND|REND|ENDSELECT|ENDFUNC|END)\\b",
+      "action": { "indentAction": "indentOutdent" }
+    }
+  ]
+}

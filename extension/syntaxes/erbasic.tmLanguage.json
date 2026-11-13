@@ -1,0 +1,360 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "EraBasic",
+  "scopeName": "source.erbasic",
+  "fileTypes": ["erb", "erh"],
+  "injectionSelector": "L:source.erbasic -comment -string",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#preprocessor" },
+    { "include": "#control-flow" },
+    { "include": "#keywords" },
+    { "include": "#builtins" },
+    { "include": "#variables" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#operators" },
+    { "include": "#labels" },
+    { "include": "#function-def" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.semicolon.erbasic",
+          "match": ";.*$"
+        },
+        {
+          "name": "comment.block.erbasic",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "preprocessor": {
+      "patterns": [
+        {
+          "name": "keyword.control.directive.erbasic",
+          "match": "\\b(#DEFINE|#IFDEF|#IFNDEF|#ELSE|#ENDIF|#SKIPSTART|#SKIPEND)\\b"
+        },
+        {
+          "name": "keyword.control.directive.erbasic",
+          "match": "\\b(#DIM|#DIMS|#CONST|#STATIC|#GLOBAL|#SAVEDATA|#CHARADATA|#REF|#DYNAMIC)\\b"
+        },
+        {
+          "name": "keyword.control.directive.erbasic",
+          "match": "\\b(#VARI|#VARS|#LOCAL|#LOCALS|#ARG|#ARGS)\\b"
+        },
+        {
+          "name": "keyword.control.directive.erbasic",
+          "match": "\\b(#FUNCTION|#FUNCTIONS|#SINGLE|#PRI|#LATER|#ONLY|#ENDFUNC|#ENDPROGRAM)\\b"
+        },
+        {
+          "name": "keyword.control.directive.erbasic",
+          "match": "\\b(#MODULE|#ENDMODULE|#EXPORT|#IMPORT|#CLASS|#ENDCLASS|#INTERFACE|#ENDINTERFACE|#IMPLEMENTS|#ENUM|#ENDENUM|#TYPE|#ENDTYPE)\\b"
+        }
+      ]
+    },
+    "control-flow": {
+      "patterns": [
+        {
+          "name": "keyword.control.flow.erbasic",
+          "match": "\\b(IF|ELSEIF|ELSE|ENDIF|SIF)\\b"
+        },
+        {
+          "name": "keyword.control.flow.erbasic",
+          "match": "\\b(SELECTCASE|CASE|CASEELSE|ENDSELECT)\\b"
+        },
+        {
+          "name": "keyword.control.flow.erbasic",
+          "match": "\\b(FOR|NEXT|BREAK|CONTINUE)\\b"
+        },
+        {
+          "name": "keyword.control.flow.erbasic",
+          "match": "\\b(WHILE|WEND)\\b"
+        },
+        {
+          "name": "keyword.control.flow.erbasic",
+          "match": "\\b(REPEAT|REND)\\b"
+        },
+        {
+          "name": "keyword.control.flow.erbasic",
+          "match": "\\b(DO|LOOP)\\b"
+        },
+        {
+          "name": "keyword.control.flow.erbasic",
+          "match": "\\b(CALL|JUMP|GOTO|RETURN|RETURNF|RETURNFORM)\\b"
+        },
+        {
+          "name": "keyword.control.flow.erbasic",
+          "match": "\\b(TRYCALL|TRYJUMP|TRYGOTO|CALLFORM|JUMPFORM|GOTOFORM)\\b"
+        },
+        {
+          "name": "keyword.control.flow.erbasic",
+          "match": "\\b(CALLF|CALLFORMF|TRYCALLFORM|TRYJUMPFORM|TRYGOTOFORM)\\b"
+        },
+        {
+          "name": "keyword.control.flow.erbasic",
+          "match": "\\b(TRYCALLLIST|TRYJUMPLIST|TRYGOTOLIST|TRYCCALL|TRYCCALLFORM)\\b"
+        },
+        {
+          "name": "keyword.control.flow.erbasic",
+          "match": "\\b(CATCH|ENDCATCH|CALLEVENT)\\b"
+        },
+        {
+          "name": "keyword.control.flow.erbasic",
+          "match": "\\b(AWAIT|WAIT|FORCEWAIT|TWAIT|WAITANYKEY)\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.other.erbasic",
+          "match": "\\b(INPUT|INPUTS|TINPUT|TINPUTS|ONEINPUT|ONEINPUTS|BINPUT|BINPUTS|ONEBINPUT|ONEBINPUTS|INPUTANY|INPUTMOUSEKEY)\\b"
+        },
+        {
+          "name": "keyword.other.erbasic",
+          "match": "\\b(SAVEGAME|LOADGAME|SAVEDATA|LOADDATA|DELDATA|SAVEGLOBAL|LOADGLOBAL|RESETDATA|RESETGLOBAL)\\b"
+        },
+        {
+          "name": "keyword.other.erbasic",
+          "match": "\\b(BEGIN|QUIT|RESTART|QUIT_AND_RESTART|FORCE_QUIT|FORCE_QUIT_AND_RESTART|END|ENDPROGRAM)\\b"
+        },
+        {
+          "name": "keyword.other.erbasic",
+          "match": "\\b(VARSET|CVARSET|ARRAYSHIFT|ARRAYREMOVE|ARRAYSORT|ARRAYCOPY|SWAP|TIMES)\\b"
+        },
+        {
+          "name": "keyword.other.erbasic",
+          "match": "\\b(SETBIT|CLEARBIT|INVERTBIT|SPLIT|RANDOMIZE|INITRAND|DUMPRAND)\\b"
+        },
+        {
+          "name": "keyword.other.erbasic",
+          "match": "\\b(STRLEN|STRLENU|STRLENFORM|STRLENFORMU|PUTFORM)\\b"
+        },
+        {
+          "name": "keyword.other.erbasic",
+          "match": "\\b(ADDCHARA|ADDSPCHARA|ADDDEFCHARA|ADDVOIDCHARA|DELCHARA|DELALLCHARA|PICKUPCHARA|SWAPCHARA|COPYCHARA|ADDCOPYCHARA|SORTCHARA|RESET_STAIN|UPCHECK|CUPCHECK|SAVECHARA|LOADCHARA)\\b"
+        },
+        {
+          "name": "keyword.other.erbasic",
+          "match": "\\b(MOVETEXTBOX|RESUMETEXTBOX|SETBGIMAGE|REMOVEBGIMAGE|CLEARBGIMAGE)\\b"
+        },
+        {
+          "name": "keyword.other.erbasic",
+          "match": "\\b(CALLSHARP|REF|REFBYNAME)\\b"
+        }
+      ]
+    },
+    "builtins": {
+      "patterns": [
+        {
+          "name": "support.function.print.erbasic",
+          "match": "\\b(PRINT|PRINTL|PRINTV|PRINTS|PRINTC|PRINTN|PRINTW|PRINTK|PRINTKW|PRINTD|PRINTDL|PRINTDW|PRINTFORMD|PRINTFORML|PRINTFORMW|PRINTFORMKW|PRINTSINGLE|PRINTSINGLEL|PRINTSINGLEW|PRINTSINGLEK|PRINTSINGLEKW|PRINTFORMS|PRINTFORMSL|PRINTFORMSW|PRINTFORMSKW|PRINTDATA|STRDATA|DATA|DATAFORM|DATALIST|ENDLIST|ENDDATA|PRINTDATAL)\\b"
+        },
+        {
+          "name": "support.function.graphics.erbasic",
+          "match": "\\b(DRAWLINE|CUSTOMDRAWLINE|DRAWLINEFORM|CLEARLINE|REDRAW|SETCOLOR|RESETCOLOR|SETBGCOLOR|RESETBGCOLOR|SETCOLORBYNAME|SETBGCOLORBYNAME|FONTBOLD|FONTITALIC|FONTREGULAR|FONTSTYLE|SETFONT|ALIGNMENT|PRINTBUTTON|PRINTBUTTONC|PRINTBUTTONLC|PRINT_IMG|PRINT_RECT|PRINT_SPACE|HTML_PRINT|BAR|BARL|REUSELASTLINE|SKIPDISP|OUTPUTLOG|DEBUGPRINT|DEBUGPRINTL|DEBUGPRINTFORM|DEBUGPRINTFORML|DEBUGCLEAR|ASSERT|TOOLTIP_SETCOLOR|TOOLTIP_SETDELAY|TOOLTIP_SETDURATION|TOOLTIP_SETFONT|TOOLTIP_SETFONTSIZE|TOOLTIP_CUSTOM|TOOLTIP_SETFORMAT|TOOLTIP_FORMAT|TOOLTIP_IMG|SETANIMETIMER|CLEARTEXTBOX|UPDATECHECK)\\b"
+        },
+        {
+          "name": "support.function.math.erbasic",
+          "match": "\\b(ABS|SIGN|MAX|MIN|LIMIT|INRANGE|POWER|SQRT|CBRT|LOG|LOG10|EXPONENT|RAND|GETBIT|SUMARRAY|MAXARRAY|MINARRAY|MATCH|CMATCH|SUMCARRAY|MAXCARRAY|MINCARRAY|GROUPMATCH|NOSAMES|ALLSAMES|FINDELEMENT|FINDLASTELEMENT|INRANGEARRAY|INRANGECARRAY|VARSIZE)\\b"
+        },
+        {
+          "name": "support.function.string.erbasic",
+          "match": "\\b(STRLENS|STRLENSU|SUBSTRING|SUBSTRINGU|STRFIND|STRFINDU|STRCOUNT|REPLACE|TOSTR|TOINT|ISNUMERIC|TOUPPER|TOLOWER|TOHALF|TOFULL|CHARATU|STRJOIN|ESCAPE|UNICODE|ENCODETOUNI|CONVERT|STRFORM|MONEYSTR|BARSTR|LINEISEMPTY|TRIM|STRREPEAT|HTML_ESCAPE|HTML_TOPLAINTEXT|HTML_GETPRINTEDSTR|HTML_POPPRINTINGSTR|HTML_TAGSPLIT|HTML_SUBSTRING|HTML_STRINGLINES|HTML_STRINGLEN)\\b"
+        },
+        {
+          "name": "support.function.chara.erbasic",
+          "match": "\\b(CSVNAME|CSVCALLNAME|CSVNICKNAME|CSVMASTERNAME|CSVBASE|CSVABL|CSVTALENT|CSVEXP|CSVMARK|CSVJUEL|CSVCFLAG|CSVCSTR|CSVEQUIP|CSVRELATION|CSVEX|FINDCHARA|FINDLASTCHARA|EXISTCSV|GETCHARA|GETSPCHARA|GETCHARA_|CHKCHARADATA|FIND_CHARADATA|EXISTMETH|EXISTFILE)\\b"
+        },
+        {
+          "name": "support.function.system.erbasic",
+          "match": "\\b(GETTIME|GETTIMES|GETMILLISECOND|GETSECOND|GETCOLOR|GETDEFCOLOR|GETBGCOLOR|GETDEFBGCOLOR|GETFOCUSCOLOR|GETSTYLE|GETFONT|CURRENTALIGN|CURRENTREDRAW|CHKFONT|ISSKIP|MOUSESKIP|MESSKIP|GETKEY|GETKEYTRIGGERED|MOUSEX|MOUSEY|ISACTIVE|PRINTCPERLINE|PRINTCLENGTH|SAVENOS|GETNUM|GETPALAMLV|GETEXPLV|CHKDATA|SPRITECREATED|SPRITEWIDTH|SPRITEHEIGHT|GETCONFIG|GETCONFIGS|CLIENTWIDTH|CLIENTHEIGHT|GETMETH|GETMETHS|GETDOINGFUNCTION|TR_NAME|ERDNAME|EXISTSOUND|PLAYSOUND|STOPSOUND|PLAYBGM|STOPBGM|SETSOUNDVOLUME|SETBGMVOLUME|MOUSEB|HOTKEY_STATE|HOTKEY_STATE_INIT|GETDISPLAYLINE|GETLINESTR|GETVAR|GETVARS|SETVAR|ISDEFINED|EXISTFUNCTION|EXISTVAR)\\b"
+        },
+        {
+          "name": "support.function.graphics2d.erbasic",
+          "match": "\\b(GCREATE|GCREATEFROMFILE|GDISPOSE|GCLEAR|GFILLRECTANGLE|GDRAWSPRITE|GDRAWG|GDRAWGWITHMASK|GSETCOLOR|GSETBRUSH|GSAVE|GLOAD|SPRITECREATE|SPRITEDISPOSE|ARRAYMSORT|GDRAWLINE|GDRAWTEXT|GDASHSTYLE|GDRAWGWITHROTATE|GSETPEN|GSETFONT|GGETBRUSH|GGETPEN|GGETPENWIDTH|GGETFONT|GGETFONTSIZE|GGETFONTSTYLE|GGETTEXTSIZE|SPRITEDISPOSEALL|SPRITEGETCOLOR|SPRITEMOVE|SPRITESETPOS|GCREATED|GWIDTH|GHEIGHT|GGETCOLOR|SPRITEPOSX|SPRITEPOSY)\\b"
+        },
+        {
+          "name": "support.function.data.erbasic",
+          "match": "\\b(MAP_CREATE|MAP_EXIST|MAP_RELEASE|MAP_GET|MAP_CLEAR|MAP_SIZE|MAP_HAS|MAP_SET|MAP_REMOVE|MAP_GETKEYS|MAP_TOXML|MAP_FROMXML|DT_CREATE|DT_EXIST|DT_RELEASE|DT_NOCASE|DT_CLEAR|DT_COLUMN_ADD|DT_COLUMN_NAMES|DT_COLUMN_EXIST|DT_COLUMN_REMOVE|DT_COLUMN_LENGTH|DT_COLUMN_OPTIONS|DT_ROW_ADD|DT_ROW_SET|DT_ROW_REMOVE|DT_ROW_LENGTH|DT_CELL_GET|DT_CELL_ISNULL|DT_CELL_GETS|DT_CELL_SET|DT_SELECT|DT_TOXML|DT_FROMXML|LOADTEXT|SAVETEXT|XML_DOCUMENT|XML_RELEASE|XML_EXIST|XML_TOSTR|XML_GET|XML_GET_BYNAME|XML_SET|XML_SET_BYNAME|XML_ADDNODE|XML_ADDNODE_BYNAME|XML_REMOVENODE|XML_REMOVENODE_BYNAME|XML_REPLACE|XML_REPLACE_BYNAME|XML_ADDATTRIBUTE|XML_ADDATTRIBUTE_BYNAME|XML_REMOVEATTRIBUTE|XML_REMOVEATTRIBUTE_BYNAME)\\b"
+        },
+        {
+          "name": "support.function.color.erbasic",
+          "match": "\\b(COLOR_FROMNAME|COLOR_FROMRGB)\\b"
+        },
+        {
+          "name": "support.function.enum.erbasic",
+          "match": "\\b(ENUMFUNCBEGINSWITH|ENUMFUNCWITH|ENUMFUNCENDSWITH|ENUMVARBEGINSWITH|ENUMVARWITH|ENUMVARENDSWITH|ENUMMACROBEGINSWITH|ENUMMACROWITH|ENUMMACROENDSWITH|ENUMFILES)\\b"
+        },
+        {
+          "name": "support.function.anchor.erbasic",
+          "match": "\\b(PARAM|TR_NAME|TR_WAIT|TR_CLEAR|TR_PRINT|EXPORT|IMPORT|MODULE|ENDMODULE|CLASS|ENDCLASS|NEW|THIS|BASE|INTERFACE|ENDINTERFACE|IMPLEMENTS|ENUM|ENDENUM|TYPE|ENDTYPE|PRI|LATER|ONLY)\\b"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.other.global.erbasic",
+          "match": "\\b([A-Z_][A-Z0-9_]*):([A-Z_][A-Z0-9_]*)\\b"
+        },
+        {
+          "name": "variable.other.global.erbasic",
+          "match": "\\b([A-Z_][A-Z0-9_]*)(\\:[A-Z_][A-Z0-9_]*)+\\b"
+        },
+        {
+          "name": "variable.other.erbasic",
+          "match": "\\b([A-Z_][A-Z0-9_]*)\\b(?=\\s*[=+\\-*/%]|\\s*\\(|\\s*\\[)"
+        },
+        {
+          "name": "variable.parameter.erbasic",
+          "match": "\\b(ARG|ARGS|LOCAL|LOCALS)\\b"
+        },
+        {
+          "name": "constant.language.erbasic",
+          "match": "\\b(RESULT|RESULT:)\\d*\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.erbasic",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            { "include": "#form-string" },
+            { "name": "constant.character.escape.erbasic", "match": "\\\\." }
+          ]
+        },
+        {
+          "name": "string.quoted.single.erbasic",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            { "name": "constant.character.escape.erbasic", "match": "\\\\." }
+          ]
+        },
+        {
+          "name": "string.form.erbasic",
+          "begin": "@\"",
+          "end": "\"",
+          "patterns": [
+            { "include": "#form-string" }
+          ]
+        }
+      ]
+    },
+    "form-string": {
+      "patterns": [
+        {
+          "name": "meta.embedded.expression.erbasic",
+          "begin": "%",
+          "end": "%",
+          "patterns": [
+            { "include": "#expressions" }
+          ]
+        },
+        {
+          "name": "meta.embedded.expression.erbasic",
+          "begin": "{",
+          "end": "}",
+          "patterns": [
+            { "include": "#expressions" }
+          ]
+        },
+        {
+          "name": "meta.conditional.erbasic",
+          "begin": "\\\\@",
+          "end": "\\\\@",
+          "patterns": [
+            { "include": "#expressions" }
+          ]
+        }
+      ]
+    },
+    "expressions": {
+      "patterns": [
+        { "include": "#numbers" },
+        { "include": "#variables" },
+        { "include": "#builtins" },
+        { "include": "#operators" }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.integer.erbasic",
+          "match": "\\b\\d+\\b"
+        },
+        {
+          "name": "constant.numeric.hex.erbasic",
+          "match": "\\b0x[0-9A-Fa-f]+\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.arithmetic.erbasic",
+          "match": "[+\\-*/%]"
+        },
+        {
+          "name": "keyword.operator.comparison.erbasic",
+          "match": "(==|!=|<=|>=|<|>)"
+        },
+        {
+          "name": "keyword.operator.logical.erbasic",
+          "match": "(&&|\\|\\||!|!&|!\\|\\|\\|\\^\\^)"
+        },
+        {
+          "name": "keyword.operator.bitwise.erbasic",
+          "match: "(&|\\|\\^|<<|>>|~|!&|!\\||\\^\\^)"
+        },
+        {
+          "name": "keyword.operator.assignment.erbasic",
+          "match": "(=|\\+=|-=|\\*=|/=|%=|&=|\\|=|\\^=|<<=|>>=)"
+        },
+        {
+          "name": "keyword.operator.string.erbasic",
+          "match": "="
+        },
+        {
+          "name": "keyword.operator.ternary.erbasic",
+          "match": "[?#]"
+        },
+        {
+          "name": "keyword.operator.increment.erbasic",
+          "match": "(\\++|--)"
+        }
+      ]
+    },
+    "labels": {
+      "patterns": [
+        {
+          "name": "entity.name.label.erbasic",
+          "match": "^\\s*\\$[A-Z_][A-Z0-9_]*\\b"
+        },
+        {
+          "name": "entity.name.label.erbasic",
+          "match": "\\b\\$[A-Z_][A-Z0-9_]*\\b"
+        }
+      ]
+    },
+    "function-def": {
+      "patterns": [
+        {
+          "name": "entity.name.function.erbasic",
+          "match": "^\\s*@[A-Z_][A-Z0-9_]*\\s*\\("
+        },
+        {
+          "name": "entity.name.function.erbasic",
+          "match": "^\\s*@[A-Z_][A-Z0-9_]*\\b"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "name": "erabasic-lsp",
+  "version": "0.1.0",
+  "publisher": "shiraicchi",
+  "displayName": "EraBasic Language Support",
+  "description": "LSP support for EraBasic (ERB/ERH files) - Emuera-EM, Emuera-Anchor, Emuera-EE",
+  "icon": "icon.png",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shiraicchi/erabasic-lsp"
+  },
+  "bugs": {
+    "url": "https://github.com/shiraicchi/erabasic-lsp/issues"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "activationEvents": [
+    "onLanguage:erbasic",
+    "workspaceContains:**/*.erb",
+    "workspaceContains:**/*.erh"
+  ],
+  "categories": [
+    "Programming Languages",
+    "Linters",
+    "Snippets"
+  ],
+  "keywords": [
+    "erabasic",
+    "er",
+    "era",
+    "emuera",
+    "lsp",
+    "language-server"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "erbasic",
+        "extensions": [
+          ".erb",
+          ".erh"
+        ],
+        "aliases": [
+          "EraBasic",
+          "ERB",
+          "ERH"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "erbasic",
+        "scopeName": "source.erbasic",
+        "path": "./syntaxes/erbasic.tmLanguage.json"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "EraBasic LSP",
+      "properties": {
+        "erabasic-lsp.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable EraBasic Language Server"
+        },
+        "erabasic-lsp.serverPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to erabasic-lsp binary (empty = bundled/auto-detect)"
+        },
+        "erabasic-lsp.dialect": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "emuera-em",
+            "emuera-anchor",
+            "emuera-ee"
+          ],
+          "default": "auto",
+          "description": "EraBasic dialect variant"
+        },
+        "erabasic-lsp.trace.server": {
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Trace LSP server communication"
+        },
+        "erabasic-lsp.lint.stringComparison": {
+          "type": "boolean",
+          "default": true,
+          "description": "Warn on string comparisons with >= / <="
+        },
+        "erabasic-lsp.lint.malformedNames": {
+          "type": "boolean",
+          "default": true,
+          "description": "Warn on malformed function/label names"
+        },
+        "erabasic-lsp.lint.unclosedFormHoles": {
+          "type": "boolean",
+          "default": true,
+          "description": "Warn on unclosed FORM holes"
+        },
+        "erabasic-lsp.completion.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable completions"
+        },
+        "erabasic-lsp.hover.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable hover documentation"
+        },
+        "erabasic-lsp.inlayHints.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable inlay hints (parameter names, types)"
+        },
+        "erabasic-lsp.semanticTokens.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable semantic highlighting"
+        },
+        "erabasic-lsp.folding.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable folding ranges"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "erabasic-lsp.restartServer",
+        "title": "Restart EraBasic Language Server",
+        "category": "EraBasic"
+      },
+      {
+        "command": "erabasic-lsp.showOutput",
+        "title": "Show EraBasic LSP Output",
+        "category": "EraBasic"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "erabasic-lsp.restartServer",
+        "key": "ctrl+alt+r",
+        "mac": "cmd+alt+r",
+        "when": "editorTextFocus && resourceLangId == erbasic"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "erbasic",
+        "path": "./snippets/erbasic.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "node esbuild.config.mjs",
+    "watch": "node esbuild.config.mjs --watch",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package",
+    "install-local": "vsce package && code --install-extension *.vsix"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^8.50.0",
+    "typescript": "^5.3.0",
+    "vsce": "^2.15.0",
+    "vscode-languageclient": "^9.0.0"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.0"
+  }
+}
